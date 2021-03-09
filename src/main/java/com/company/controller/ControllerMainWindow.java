@@ -52,12 +52,12 @@ public class ControllerMainWindow {
 //        initialize from dataBase;
         initData(products);
 
+//        initialize startWindow;
         createTilesProduct(products);
 
 //        search by named book;
         searchBook();
 
-//        defaultSettings();
     }
 
     private void initData(ObservableList<Product> list){
@@ -66,50 +66,52 @@ public class ControllerMainWindow {
     }
 
     private void createTilesProduct(ObservableList<Product> products){
-        flowPane.getChildren().clear();
-        flowPane.setPrefWidth(scrollPane.getWidth());
-        System.out.println(scrollPane.getWidth());
-        flowPane.setHgap(25);
-        flowPane.setVgap(15);
-        flowPane.setAlignment(Pos.CENTER_LEFT);
-        flowPane.setOrientation(Orientation.HORIZONTAL);
+            flowPane.getChildren().clear();
+            scrollPane.widthProperty().addListener((observableValue, oldValue, newValue) ->{
+                flowPane.setPrefWidth(newValue.intValue());
+            });
+            System.out.println();
+            flowPane.setHgap(25);
+            flowPane.setVgap(15);
+            flowPane.setAlignment(Pos.CENTER_LEFT);
+            flowPane.setOrientation(Orientation.HORIZONTAL);
 
 
-        for (Product product: products) {
+            for (Product product : products) {
 //            Contain cover;
-            AnchorPane anchorPane = new AnchorPane();
+                AnchorPane anchorPane = new AnchorPane();
 
 //            images;
-            ImageView imageView = new ImageView();
-            imageView.setImage(new Image(product.getMainImagePath()));
-            imageView.setFitHeight(300);
-            imageView.setFitWidth(200);
+                ImageView imageView = new ImageView();
+                imageView.setImage(new Image(product.getMainImagePath()));
+                imageView.setFitHeight(300);
+                imageView.setFitWidth(200);
 
 //            labels;
-            Label labelNamed = new Label();
-            labelNamed.setText(product.getTitle());
-            labelNamed.setPrefHeight(320);
-            labelNamed.setPadding(new Insets(300,0,0,0));
-            labelNamed.setWrapText(true);
-            labelNamed.setMaxWidth(200);
+                Label labelNamed = new Label();
+                labelNamed.setText(product.getTitle());
+                labelNamed.setPrefHeight(320);
+                labelNamed.setPadding(new Insets(300, 0, 0, 0));
+                labelNamed.setWrapText(true);
+                labelNamed.setMaxWidth(200);
 
-            Label labelCost = new Label();
-            labelCost.setText("Стоимость: " + product.getCost() + " руб.");
-            labelCost.setPrefHeight(320);
-            labelCost.setPadding(new Insets(315,0,0,0));
+                Label labelCost = new Label();
+                labelCost.setText("Стоимость: " + product.getCost() + " руб.");
+                labelCost.setPrefHeight(320);
+                labelCost.setPadding(new Insets(315, 0, 0, 0));
 
-            Label labelIsActive = new Label();
-            labelIsActive.setText("Состояние: " + product.getIsActive());
-            labelIsActive.setPrefHeight(320);
-            labelIsActive.setPadding(new Insets(330,0,0,0));
+                Label labelIsActive = new Label();
+                labelIsActive.setText("Состояние: " + product.getIsActive());
+                labelIsActive.setPrefHeight(320);
+                labelIsActive.setPadding(new Insets(330, 0, 0, 0));
 
 //            Node;
-            anchorPane.getChildren().add(imageView);
-            anchorPane.getChildren().add(labelNamed);
-            anchorPane.getChildren().add(labelCost);
-            anchorPane.getChildren().add(labelIsActive);
-            flowPane.getChildren().add(anchorPane);
-        }
+                anchorPane.getChildren().add(imageView);
+                anchorPane.getChildren().add(labelNamed);
+                anchorPane.getChildren().add(labelCost);
+                anchorPane.getChildren().add(labelIsActive);
+                flowPane.getChildren().add(anchorPane);
+            }
     }
 
     private void searchBook(){
@@ -123,15 +125,6 @@ public class ControllerMainWindow {
 //        generator tiles;
             createTilesProduct(list);
         });
-    }
-
-    private void defaultSettings(){
-        flowPane.getChildren().clear();
-        flowPane.setPrefWidth(scrollPane.getWidth());
-        flowPane.setHgap(25);
-        flowPane.setVgap(15);
-        flowPane.setAlignment(Pos.CENTER_LEFT);
-        flowPane.setOrientation(Orientation.HORIZONTAL);
     }
 
     @FXML
