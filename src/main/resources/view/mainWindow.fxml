@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.controller.ControllerMainWindow">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.controller.ControllerMainWindow">
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
             <FlowPane fx:id="flowPane" prefHeight="200.0" prefWidth="200.0" />
          </content>
@@ -15,11 +15,12 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="312.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtSearch" layoutX="69.0" layoutY="14.0" />
+            <TextField fx:id="txtSearch" layoutX="70.0" layoutY="15.0" prefHeight="25.0" prefWidth="228.0" />
             <Label layoutX="14.0" layoutY="17.0" text="Поиск">
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <Button layoutX="14.0" layoutY="108.0" mnemonicParsing="false" onAction="#buttonAddBook" prefHeight="34.0" prefWidth="106.0" text="Добавить книгу" />
          </children>
       </AnchorPane>
    </left>
