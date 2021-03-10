@@ -20,8 +20,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.SessionFactory;
@@ -32,6 +33,11 @@ import java.io.IOException;
 public class ControllerMainWindow {
 
     ObservableList<Product> products = FXCollections.observableArrayList();
+    public static String coverView;
+    public static String title;
+    public static String cost;
+    public static String isActive;
+
 
 //    Session;
     private final SessionFactory factory;
@@ -67,9 +73,11 @@ public class ControllerMainWindow {
 
     private void createTilesProduct(ObservableList<Product> products){
             flowPane.getChildren().clear();
+
             scrollPane.widthProperty().addListener((observableValue, oldValue, newValue) ->{
                 flowPane.setPrefWidth(newValue.intValue());
             });
+
             System.out.println();
             flowPane.setHgap(25);
             flowPane.setVgap(15);
@@ -82,8 +90,9 @@ public class ControllerMainWindow {
                 AnchorPane anchorPane = new AnchorPane();
 
 //            images;
+                Image image = new Image(product.getMainImagePath());
                 ImageView imageView = new ImageView();
-                imageView.setImage(new Image(product.getMainImagePath()));
+                imageView.setImage(image);
                 imageView.setFitHeight(300);
                 imageView.setFitWidth(200);
 
@@ -105,12 +114,32 @@ public class ControllerMainWindow {
                 labelIsActive.setPrefHeight(320);
                 labelIsActive.setPadding(new Insets(330, 0, 0, 0));
 
+
 //            Node;
                 anchorPane.getChildren().add(imageView);
                 anchorPane.getChildren().add(labelNamed);
                 anchorPane.getChildren().add(labelCost);
                 anchorPane.getChildren().add(labelIsActive);
                 flowPane.getChildren().add(anchorPane);
+
+                anchorPane.setOnMouseClicked(p -> {
+                    cost = labelCost.getText();
+                    title = labelNamed.getText();
+                    isActive = labelIsActive.getText();
+                    coverView = product.getMainImagePath();
+
+                    try {
+                        Parent parent = FXMLLoader.load(getClass().getResource("/view/windowInfo.fxml"));
+                        Stage stage = new Stage();
+                        stage.setResizable(false);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle("");
+                        stage.setScene(new Scene(parent));
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
     }
 
