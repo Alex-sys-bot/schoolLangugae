@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane onMouseEntered="#click" onMouseExited="#clickExit" prefHeight="300.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.controller.TileController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="200.0" style="-fx-border-radius: 48;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imageCourse" fitHeight="226.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="lblTitle" alignment="CENTER" text="Название">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCost" alignment="CENTER" text="Цена">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblActive" alignment="CENTER" text="Состояние">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
